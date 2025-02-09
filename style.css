@@ -1,0 +1,263 @@
+:root {
+  --lila: #8a5eae;
+  --rosa: #f6d7ff;
+}
+
+/* Estilos creados con mucho cariño */
+body {
+  font-family: 'Arial', sans-serif;
+  background: var(--rosa);
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: var(--lila);
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Línea de tiempo */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 40px auto;
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: var(--lila);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Cada entrada de la línea de tiempo */
+.entry {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.entry::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--lila);
+  border: 4px solid var(--rosa);
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Ubicación de los puntos para cada entrada */
+.entry.left::before {
+  right: -3.5rem;
+}
+
+.entry.right::before {
+  left: 1.35rem;
+}
+
+/* Contenido extendido: aumenta 40px sobre el 100% */
+.entry .content {
+  width: calc(100% + 40px);
+  padding: 20px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Posicionamiento de las entradas: izquierda y derecha */
+.entry.left {
+  left: -3rem;
+  text-align: right;
+}
+
+.entry.right {
+  left: 45%;
+  text-align: left;
+}
+
+/* Botón y mensaje secreto */
+button {
+  display: block;
+  margin: 30px auto;
+  padding: 10px 20px;
+  background-color: var(--lila);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d62828;
+}
+
+#hidden-message {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.3rem;
+  color: var(--lila);
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Secciones de recuerdos */
+.user-memories {
+  margin-top: 10px;
+  border-top: 1px dashed #ccc;
+  padding-top: 10px;
+}
+
+.user-memories .memory-item {
+  position: relative;
+  margin-bottom: 5px;
+  padding-right: 30px; /* espacio para los iconos */
+}
+
+.memory-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Iconos para editar y borrar, ocultos por defecto */
+.memory-item .icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  position: absolute;
+}
+
+.memory-item:hover .icon {
+  opacity: 1;
+}
+
+/* Estilo para el campo de edición */
+.edit-input {
+  font-size: 0.95rem;
+  padding: 2px;
+  width: 80%;
+}
+
+.edit-icon {
+  color: var(--lila);
+  transform: rotate(90deg);
+  right: 4%;
+  top: 0;
+}
+
+.delete-icon {
+  color: #ff5555;
+  right: -1.76%; 
+  top: -6%;
+}
+/*** agrega tu recuerdo ***/
+.new-memory {
+  width: 93%;
+}
+.memory-text{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Para pantallas menores a 768px (tablets y móviles) */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+  
+  .timeline {
+    max-width: 90%;
+  }
+  /* Reubicar la línea de tiempo hacia la izquierda para mayor espacio */
+  .timeline::after {
+    left: 0px;
+    transform: none;
+  }
+  
+  /* Las entradas ocuparán el 100% del ancho y se alinean a la izquierda */
+  .entry {
+    width: 100%;
+    left: 0 !important;
+    padding: 10px 20px;
+    text-align: left;
+  }
+  /* Ajustar la posición del punto */
+  .entry::before {
+    left: -.81rem;
+    right: auto;
+  }
+  .entry.right::before {
+    left: -.81rem;
+    right: auto;
+  }
+  /* Ajustamos el contenido para que se expanda correctamente */
+  .entry .content {
+    width: calc(100% + 40px);
+    margin-left: -40px;
+    text-align: right;
+  }
+  .content p{
+    margin-left: 20px;
+  }
+  #hidden-message {
+    font-size: 1.1rem;
+  }
+}
+
+/* Para pantallas menores a 480px (móviles pequeños) */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+  header p {
+    font-size: 0.9rem;
+  }
+  
+  .timeline {
+    max-width: 95%;
+  }
+  
+  .entry .content {
+    padding: 15px;
+  }
+  
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+  
+  #hidden-message {
+    font-size: 1rem;
+  }
+}
